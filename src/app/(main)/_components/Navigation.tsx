@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import React, { ElementRef, useEffect, useRef, useState } from 'react';
 
 import { useMediaQuery } from 'usehooks-ts';
+import UserItem from './UserItem';
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -114,7 +115,7 @@ const Navigation = () => {
           <ChevronLeft className="h-6 w-6" />
         </div>
         <div>
-          <p>Action Items</p>
+          <UserItem />
         </div>
         <div className="mt-4 ">
           <p>Document</p>
@@ -125,6 +126,8 @@ const Navigation = () => {
           className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0 "
         />
       </aside>
+
+      {/* THIS IS THE NAVIGATION WITH POSITION ABSOLUTE  AND DYNAMIC WIDTH */}
       <div
         ref={navbarRef}
         className={cn(

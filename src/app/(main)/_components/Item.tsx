@@ -32,6 +32,7 @@ interface ItemProps {
   active?: boolean;
   expanded?: boolean;
   isSearch?: boolean;
+  isSetting?: boolean;
   level?: number;
   label: string;
   onClick?: () => void;
@@ -45,6 +46,7 @@ const Item = ({
   documentIcon,
   expanded,
   isSearch,
+  isSetting,
   level = 0,
   label,
   onClick,
@@ -108,7 +110,7 @@ const Item = ({
       {!!id && (
         <div
           role="button"
-          className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
+          className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1"
           onClick={handleExpand}
         >
           <CheveronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
@@ -120,9 +122,10 @@ const Item = ({
         <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
       )}
       <span className="truncate">{label}</span>
-      {isSearch && (
+      {(isSearch || isSetting) && (
         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>K
+          <span className="text-xs">⌘</span>
+          {isSearch ? 'K' : 'X'}
         </kbd>
       )}
       {!!id && (

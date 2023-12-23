@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import './globals.css';
 import { ThemeProvider } from '@/components/Providers/theme-provider';
 import { ConvexClientProvider } from '@/components/Providers/convex-provider';
+import { ModalProvider } from '@/components/Providers/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -43,6 +44,7 @@ export default function RootLayout({
             storageKey="jotion-theme"
           >
             <Toaster />
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

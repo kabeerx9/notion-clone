@@ -3,7 +3,14 @@
 import React from 'react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, PlusIcon, Trash } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronRight,
+  LucideIcon,
+  MoreHorizontal,
+  PlusIcon,
+  Trash,
+} from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -27,24 +34,23 @@ interface ItemProps {
   isSearch?: boolean;
   level?: number;
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   onExpand?: () => void;
   icon: LucideIcon;
 }
 
 const Item = ({
-                id,
-                active,
-                documentIcon,
-                expanded,
-                isSearch,
-                level = 0,
-                label,
-                onClick,
-                onExpand,
-                icon: Icon,
-              }: ItemProps) => {
-
+  id,
+  active,
+  documentIcon,
+  expanded,
+  isSearch,
+  level = 0,
+  label,
+  onClick,
+  onExpand,
+  icon: Icon,
+}: ItemProps) => {
   const { user } = useUser();
 
   const router = useRouter();
@@ -115,8 +121,7 @@ const Item = ({
       )}
       <span className="truncate">{label}</span>
       {isSearch && (
-        <kbd
-          className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
           <span className="text-xs">⌘</span>K
         </kbd>
       )}
@@ -124,12 +129,19 @@ const Item = ({
         <div className="ml-auto flex items-center gap-x-2 ">
           <DropdownMenu>
             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-              <div role="button"
-                   className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600">
+              <div
+                role="button"
+                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+              >
                 <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-60" align="start" side="right" forceMount>
+            <DropdownMenuContent
+              className="w-60"
+              align="start"
+              side="right"
+              forceMount
+            >
               <DropdownMenuItem onClick={onArchive}>
                 <Trash className="h-4 w-4 mr-2" />
                 Delete
@@ -150,8 +162,7 @@ const Item = ({
         </div>
       )}
     </div>
-  )
-    ;
+  );
 };
 
 export default Item;
